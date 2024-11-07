@@ -3,8 +3,17 @@
 - hosts: pc
   remote_user: root
   gather_facts: no
+  become: yes
 
-  tasks: 
+  tasks:
+    - name: create dir
+      file: 
+        path: /data
+        state: directory
+        mode: '0775'
+        owner: root
+        group: root
+
     - name: copy tar file
       copy: src=/data/node.tar.gz dest=/data/
 
@@ -13,4 +22,6 @@
         src: /data/node.tar.gz 
         dest: /data/
         remote_src: yes  # 如果tar.gz文件已经在远程主机上
-
+   
+    - name: Run start.sh
+      command: /data/node/start.sh
