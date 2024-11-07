@@ -1,0 +1,16 @@
+
+# copy file
+- hosts: pc
+  remote_user: root
+  gather_facts: no
+
+  tasks: 
+    - name: copy tar file
+      copy: src=/data/node.tar.gz dest=/data/
+
+    - name: Unzip the data package
+      unarchive: 
+        src: /data/node.tar.gz 
+        dest: /data/
+        remote_src: yes  # 如果tar.gz文件已经在远程主机上
+
