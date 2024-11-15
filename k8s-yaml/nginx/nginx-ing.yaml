@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ngs-ingress
+  namespace: ng # 如果您的服务不在默认命名空间，请更改此值
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: / # 可选，根据需要调整重写规则
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: d1.ucs.com # 将此值替换为您自己的域名
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ngs
+            port:
+              number: 80

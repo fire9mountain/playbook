@@ -1,0 +1,8 @@
+- hosts: pc
+  remote_user: root
+
+  tasks:
+    - name: delete dir
+      file: path={{ item }} state=absent
+      with_items:
+        - /opt/js

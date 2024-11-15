@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service 
+metadata:
+  name: ngs
+  namespace: ng
+spec:
+  selector:
+    app: nginx-pod
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80  #暴露在cluster Ip上的端口，供集群内部使用
+    targetPort: 80  #pod上的端口
+    nodePort: 30001

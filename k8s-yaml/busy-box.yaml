@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybos-deploy
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+     app: busybox-pod
+  template:
+    metadata:
+      labels:
+        app: busybox-pod
+    spec:
+      containers:
+      - name: busybox
+        image: busybox:1.28.4
+        imagePullPolicy: IfNotPresent
+        command: 
+          - sleep
+          - "3600"
+      restartPolicy: Always

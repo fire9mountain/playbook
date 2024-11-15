@@ -1,0 +1,11 @@
+
+# copy file
+- hosts: pc
+  remote_user: root
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: copy tar file
+      copy: src=/etc/docker/daemon.json  dest=/etc/docker/
+
